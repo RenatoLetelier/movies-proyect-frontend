@@ -1,39 +1,34 @@
 import { useState, useEffect } from "react";
 
 export function Movies() {
-  const [movies, setMovies] = useState([]); // Estado para almacenar las películas
-  const [loading, setLoading] = useState(true); // Estado de carga
+  const [movies, setMovies] = useState(null); // Estado para almacenar las películas
   const [error, setError] = useState(null); // Estado de error
 
   useEffect(() => {
-    const fetchMovies = async () => {
-      try {
-        const response = await fetch("http://localhost:8000/movies");
+    fetch("http://192.168.1.83:8000/movies")
+      .then((response) => {
         if (!response.ok) {
           throw new Error("Error al obtener las películas");
         }
-        const data = await response.json();
-        setMovies(data);
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchMovies();
+        return response.json();
+      })
+      .then((data) => setMovies(data))
+      .catch((err) => setError(err.message));
   }, []);
 
-  if (loading) return <p>Cargando películas...</p>;
-  if (error) return <p>Error: {error}</p>;
+  //Manejo de errores
+  if (error){
+    console.log(error);
+    return <p>Error: {error}</p>;
+  } 
 
   return (
     <div className="movies-container">
       <h1>Lista de Películas</h1>
       <ul>
-        {movies.map((movie) => (
+        {movies?.map((movie) => (
           <li key={movie.id}>
-            <a href={movie.address} target="_blank" rel="noopener noreferrer">
+            <a href={movie.address} target="_blank">
               {movie.name}
             </a>
           </li>

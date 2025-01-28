@@ -22,3 +22,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# --- Commands for run server --- #
+# Build project
+npm run build 
+# Run server
+serve -s dist -l 3000
