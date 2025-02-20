@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 export function Movies() {
   const [movies, setMovies] = useState(null); // Estado para almacenar las películas
   const [error, setError] = useState(null); // Estado de error
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch("http://192.168.1.83:8000/movies")
@@ -19,6 +21,7 @@ export function Movies() {
   //Manejo de errores
   if (error){
     console.log(error);
+    navigate("/error/");
     return <p>Error: {error}</p>;
   } 
 

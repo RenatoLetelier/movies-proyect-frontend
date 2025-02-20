@@ -1,24 +1,36 @@
 input {
-    width: 100%;
-    padding: 12px 16px;
-    font-size: 16px;
-    border: 2px solid #ccc;
-    border-radius: 8px;
-    outline: none;
-    transition: all 0.3s ease-in-out;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Cambia el borde y la sombra al hacer foco */
-  input:focus {
-    border-color: #4a90e2;
-    box-shadow: 2px 2px 15px rgba(74, 144, 226, 0.3);
-  }
-  
-  /* Mejora la apariencia de los inputs deshabilitados */
-  input:disabled {
-    background-color: #f5f5f5;
-    color: #999;
-    cursor: not-allowed;
-  }
-  
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 16px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Cambia el borde y la sombra al hacer foco */
+input:focus {
+  border-color: #4a90e2;
+  box-shadow: 2px 2px 15px rgba(74, 144, 226, 0.3);
+}
+
+/* Mejora la apariencia de los inputs deshabilitados */
+input:disabled {
+  background-color: #f5f5f5;
+  color: #999;
+  cursor: not-allowed;
+}
+
+button {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  background-color: #41ac4f !important;
+  color: #fff;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.3s ease-in-out;
+}
