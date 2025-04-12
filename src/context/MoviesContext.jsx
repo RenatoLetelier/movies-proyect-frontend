@@ -1,25 +1,23 @@
 import { createContext, useState, useContext } from "react";
-import { registerRequest, loginRequest } from "../api/Auth";
+import { apiGetMovies, apiWatchMovie, apiGetMovieById, apiCreateMovie, apiUpdateMovie, apiDeleteMovie } from "../api/Movies";
 
-export const AuthContext = createContext();
+export const MoviesContext = createContext();
 
-export const useAuth = () => {
-    const context = useContext(AuthContext);
+export const useMovies = () => {
+    const context = useContext(MoviesContext);
     if (!context) {
-        throw new Error("useAuth must be used within an AuthProvider");
+        throw new Error("useMovies must be used within an MoviesProvider");
     }
     return context;
 };
 
-export const AuthProvider = ({ children }) => {
-    const [user, setUser] = useState(null);
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
+export const MoviesProvider = ({ children }) => {
+    const [movie, setMovie] = useState(null);
 
-    const signup = async (user) => {
+    const getMovies = async () => {
         try {
-            const res = await registerRequest(user);
-            setUser(res.data);
-            setIsAuthenticated(true);
+            const res = await apiGetMovies();
+            setMovie(res.data);
         } catch (error) {
             console.error(error);
         }

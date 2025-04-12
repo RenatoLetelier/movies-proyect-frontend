@@ -1,7 +1,6 @@
 import axios from "axios";
+import env from "react-dotenv";
 
-const API = 'http://localhost:8000/api';
-
-export const registerRequest = user => axios.post(`${API}/auth/register`, user)
-export const loginRequest = user => axios.post(`${API}/auth/login`, user)
+export const registerRequest = user => axios.post(`${env.API_URL}/auth/register`, user)
+export const loginRequest = user => axios.post(`${env.API_URL}/auth/login`, user)
 

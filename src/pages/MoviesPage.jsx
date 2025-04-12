@@ -1,42 +1,48 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import { apiGetMovies } from "../api/Movies";
 
 export function Movies() {
-  const [movies, setMovies] = useState(null); // Estado para almacenar las películas
-  const [error, setError] = useState(null); // Estado de error
+  const [movies, setMovies] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("http://192.168.1.83:8000/movies")
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Error al obtener las películas");
-        }
-        return response.json();
-      })
-      .then((data) => setMovies(data))
-      .catch((err) => setError(err.message));
+    const fetchMovies = async () => {
+      try {
+        const res = await apiGetMovies();
+        setMovies(res.data);
+      } catch (err) {
+        setError("No se pudo cargar la lista de películas.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchMovies();
   }, []);
 
-  //Manejo de errores
-  if (error){
-    console.log(error);
-    navigate("/error/");
-    return <p>Error: {error}</p>;
-  } 
+  if (loading) return <p>Cargando películas...</p>;
+
+  if (error) return (navigate("/error/"));
 
   return (
     <div className="movies-container">
       <h1>Lista de Películas</h1>
-      <ul>
-        {movies?.map((movie) => (
-          <li key={movie.id}>
-            <a href={movie.address} target="_blank">
-              {movie.name}
-            </a>
-          </li>
-        ))}
-      </ul>
+      {movies.length === 0 ? (
+        <p>No hay películas disponibles.</p>
+      ) : (
+        <ul>
+          {movies.map((movie) => (
+            <li key={movie.id}>
+              <Link to={`/movies/watch/${encodeURIComponent(movie.id)}`}>
+                {movie.title}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }

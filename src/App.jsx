@@ -7,6 +7,7 @@ import { Movies } from './pages/MoviesPage';
 import { ErrorPage } from './pages/ErrorPage';
 import { Navbar } from './components/NavbarComponent';
 import { AuthProvider } from './context/AuthContext';
+import { MoviePlayer } from './components/MoviePlayerComponent';
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/movies" element={<Movies />} />
+            <Route path="/movies/watch/:id" element={<MoviePlayer />} />
             <Route path="/error" element={<ErrorPage />} />
           </Routes>
         </BrowserRouter>
