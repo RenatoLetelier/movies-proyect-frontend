@@ -1,8 +1,10 @@
 import { useParams } from "react-router-dom";
 
+const URL = import.meta.env.VITE_API_URL;
+
 export function MoviePlayer() {
   const { id } = useParams();
-  const streamUrl = `http://localhost:8000/api/movies/watch/${decodeURIComponent(id)}`;
+  const streamUrl = `${URL}/movies/watch/${decodeURIComponent(id)}`;
 
   return (
     <div>

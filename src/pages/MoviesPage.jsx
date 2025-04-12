@@ -12,7 +12,8 @@ export function Movies() {
     const fetchMovies = async () => {
       try {
         const res = await apiGetMovies();
-        setMovies(res.data);
+        console.log("Respuesta de API:", res);
+        setMovies(Array.isArray(res.data) ? res.data : []);
       } catch (err) {
         setError("No se pudo cargar la lista de películas.");
       } finally {
