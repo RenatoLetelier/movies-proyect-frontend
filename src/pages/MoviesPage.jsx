@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { apiGetMovies } from "../api/Movies";
+import { RedirectButton } from "../components/RedirectButtonComponent";
 
-export function Movies() {
+export function MoviesPage() {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -12,7 +13,6 @@ export function Movies() {
     const fetchMovies = async () => {
       try {
         const res = await apiGetMovies();
-        console.log("Respuesta de API:", res);
         setMovies(Array.isArray(res.data) ? res.data : []);
       } catch (err) {
         setError("No se pudo cargar la lista de películas.");
@@ -30,7 +30,11 @@ export function Movies() {
 
   return (
     <div className="movies-container">
-      <h1>Lista de Películas</h1>
+      <div>
+        <h1>Lista de Películas</h1>
+        <RedirectButton buttonText={'Add new movie'} route={'/movies-form'}/>
+        <RedirectButton buttonText={'Back'} route={'../'}/>
+      </div>
       {movies.length === 0 ? (
         <p>No hay películas disponibles.</p>
       ) : (

@@ -4,11 +4,11 @@ import { useForm } from 'react-hook-form'
 import "./LoginPage.css";
 import { useAuth } from "../context/AuthContext";
 
-export function Login() {
+export function LoginPage() {
   const [error, setError] = useState(null); // Estado de error
   const navigate = useNavigate();
   const {register, handleSubmit} = useForm();
-  const {signin, isAuthenticated} = useAuth();
+  const {user, signin, isAuthenticated} = useAuth();
 
   //Manejo de errores
   if (error){
@@ -17,14 +17,9 @@ export function Login() {
     return <p>Error: {error}</p>;
   }
 
-  useEffect(() => {
-    if (isAuthenticated) {
-      navigate("/");
-    }
-  }, [isAuthenticated])
-
   const onSubmit = handleSubmit(async (values) => {
     signin(values)
+    navigate("/");
   });
 
   return (
@@ -32,13 +27,13 @@ export function Login() {
         <h1>Login</h1>
         <form className="login-form" onSubmit={onSubmit}>
             <label>
-                Usuario:
+                Username:
                 <input type="text"
                   {...register('username', { required: true })}
                 />
             </label>
             <label>
-                Contraseña:
+                Password:
                 <input type="password"
                   {...register('password', { required: true })}
                 />

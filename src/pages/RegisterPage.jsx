@@ -4,7 +4,7 @@ import "./LoginPage.css";
 import { useForm } from 'react-hook-form'
 import { useAuth } from "../context/AuthContext";
 
-export function Register() {
+export function RegisterPage() {
   const [error, setError] = useState(null); // Estado de error
   const navigate = useNavigate();
   const {register, handleSubmit} = useForm();
