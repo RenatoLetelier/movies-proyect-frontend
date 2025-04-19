@@ -1,14 +1,14 @@
-import './App.css'
+import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { LoginPage } from './pages/LoginPage'
-import { RegisterPage } from './pages/RegisterPage'
-import { HomePage } from './pages/HomePage'
-import { MoviesPage } from './pages/MoviesPage';
-import { ErrorPage } from './pages/ErrorPage';
-import { MoviesFormPage } from './pages/MoviesFormPage';
-import { Navbar } from './components/NavbarComponent';
-import { AuthProvider } from './context/AuthContext';
-import { MoviePlayer } from './components/MoviePlayerComponent';
+import { LoginPage } from "./pages/LoginPage";
+import { RegisterPage } from "./pages/RegisterPage";
+import { HomePage } from "./pages/HomePage";
+import { MoviesPage } from "./pages/MoviesPage";
+import { ErrorPage } from "./pages/ErrorPage";
+import { MoviesFormPage } from "./pages/MoviesFormPage";
+import { Navbar } from "./components/NavbarComponent";
+import { AuthProvider } from "./context/AuthContext";
+import { MoviePlayer } from "./components/MoviePlayerComponent";
 
 function App() {
   return (
@@ -30,7 +30,7 @@ function App() {
         </BrowserRouter>
       </AuthProvider>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

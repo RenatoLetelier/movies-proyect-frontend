@@ -7,9 +7,5 @@ export function RedirectButton({ buttonText, route }) {
     navigate(route);
   };
 
-  return (
-    <button onClick={handleClick}>
-      {buttonText}
-    </button>
-  );
+  return <button onClick={handleClick}>{buttonText}</button>;
 }

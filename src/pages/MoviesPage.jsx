@@ -26,14 +26,14 @@ export function MoviesPage() {
 
   if (loading) return <p>Cargando películas...</p>;
 
-  if (error) return (navigate("/error/"));
+  if (error) return navigate("/error/");
 
   return (
     <div className="movies-container">
       <div>
         <h1>Lista de Películas</h1>
-        <RedirectButton buttonText={'Add new movie'} route={'/movies-form'}/>
-        <RedirectButton buttonText={'Back'} route={'../'}/>
+        <RedirectButton buttonText={"Add new movie"} route={"/movies-form"} />
+        <RedirectButton buttonText={"Back"} route={"../"} />
       </div>
       {movies.length === 0 ? (
         <p>No hay películas disponibles.</p>

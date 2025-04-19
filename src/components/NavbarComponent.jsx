@@ -8,24 +8,30 @@ export function Navbar() {
   const handleClick = () => {
     window.localStorage.removeItem("loggedUserJSON");
     window.location.reload();
-  }
+  };
 
   return (
     <nav className="navbar">
-    <a href="/" className="navbar-home">Home</a>
-    <div className="navbar-profile">
+      <a href="/" className="navbar-home">
+        Home
+      </a>
+      <div className="navbar-profile">
         <a href={user ? "#" : "/login"} className="profile-link">
-            {user ? (
-                <>
-                    <img src="https://randomuser.me/api/portraits/men/46.jpg" alt="Profile" className="profile-img" />
-                    <span>{user.username}</span>
-                    <span onClick={handleClick}>Log out</span>
-                </>
-            ) : (
-                <span>Log in</span>
-            )}
+          {user ? (
+            <>
+              <img
+                src="https://randomuser.me/api/portraits/men/46.jpg"
+                alt="Profile"
+                className="profile-img"
+              />
+              <span>{user.username}</span>
+              <span onClick={handleClick}>Log out</span>
+            </>
+          ) : (
+            <span>Log in</span>
+          )}
         </a>
-    </div>
-  </nav>
+      </div>
+    </nav>
   );
 }
