@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { RedirectButton } from "./RedirectButtonComponent";
-import { apiGetMovieById } from "../api/Movies";
+import { apiGetMovieById, apiWatchMovie } from "../api/Movies";
 
 const URL = import.meta.env.VITE_API_URL;
 

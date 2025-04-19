@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import { apiGetMovieById } from "../api/Movies";
 import { useNavigate } from "react-router-dom";
 import { apiCreateMovie, apiUpdateMovie } from "../api/Movies";
+import "./MoviesFormComponent.css";
 
 export function MoviesFormComponent() {
   const location = useLocation();
@@ -75,24 +76,37 @@ export function MoviesFormComponent() {
 
   return (
     <form onSubmit={handleSubmit} className="movie-form">
+      <h2 className="form-title">Formulario de Películas</h2>
+
+      <div className="form-group">
+        <input
+          name="title"
+          value={formData.title}
+          onChange={handleChange}
+          placeholder="Título"
+        />
+        <input
+          name="subtitle"
+          value={formData.subtitle}
+          onChange={handleChange}
+          placeholder="Subtítulo"
+        />
+      </div>
+
       <input
-        name="title"
-        value={formData.title}
+        name="path"
+        value={formData.path}
         onChange={handleChange}
-        placeholder="Título"
+        placeholder="Ruta del archivo"
       />
-      <input
-        name="subtitle"
-        value={formData.subtitle}
-        onChange={handleChange}
-        placeholder="Subtítulo"
-      />
+
       <textarea
         name="description"
         value={formData.description}
         onChange={handleChange}
         placeholder="Descripción"
       />
+
       <input
         name="imgBanner"
         value={formData.imgBanner}
@@ -117,15 +131,17 @@ export function MoviesFormComponent() {
         onChange={handleChange}
         placeholder="Duración (min)"
       />
-      <label>
-        ¿Vista?
+
+      <label className="checkbox">
         <input
           type="checkbox"
           name="seen"
           checked={formData.seen}
           onChange={handleChange}
         />
+        ¿Vista?
       </label>
+
       <input
         name="rating"
         value={formData.rating}
@@ -138,12 +154,7 @@ export function MoviesFormComponent() {
         onChange={handleChange}
         placeholder="URL del Trailer"
       />
-      <input
-        name="path"
-        value={formData.path}
-        onChange={handleChange}
-        placeholder="Ruta del archivo"
-      />
+
       <input
         name="actors"
         value={formData.actors.join(", ")}
@@ -156,7 +167,13 @@ export function MoviesFormComponent() {
         onChange={(e) => handleArrayChange(e, "genres")}
         placeholder="Géneros (separados por coma)"
       />
-      <button type="submit">Guardar</button>
+
+      <button type="submit" className="submit-btn">
+        Guardar
+      </button>
+      <button type="submit" className="cancel-btn">
+        cancelar
+      </button>
     </form>
   );
 }
