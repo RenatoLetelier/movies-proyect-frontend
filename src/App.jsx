@@ -9,6 +9,9 @@ import { AuthProvider } from "./context/AuthContext";
 import { MoviesPage } from "./pages/MoviesPage";
 import { MoviesFormPage } from "./pages/MoviesFormPage";
 import { MoviePlayer } from "./components/MoviePlayerComponent";
+import { SeriesPage } from "./pages/SeriesPage";
+import { SeriesFormPage } from "./pages/SeriesFormPage";
+import { SeriePlayer } from "./components/SeriePlayerComponent";
 import { PhotosPage } from "./pages/PhotosPage";
 import { PhotosFormPage } from "./pages/PhotosFormPage";
 import { PhotoPlayer } from "./components/PhotoPlayerComponent";
@@ -28,6 +31,9 @@ function App() {
             <Route path="/movies" element={<MoviesPage />} />
             <Route path="/movies-form" element={<MoviesFormPage />} />
             <Route path="/movies/watch/:id" element={<MoviePlayer />} />
+            <Route path="/series" element={<SeriesPage />} />
+            <Route path="/series-form" element={<SeriesFormPage />} />
+            <Route path="/series/watch/:name" element={<SeriePlayer />} />
             <Route path="/photos" element={<PhotosPage />} />
             <Route path="/photos-form" element={<PhotosFormPage />} />
             <Route path="/photos/see/:id" element={<PhotoPlayer />} />

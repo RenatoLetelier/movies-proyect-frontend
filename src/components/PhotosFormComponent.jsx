@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { apiGetPhotoById, apiCreatePhoto, apiUpdatePhoto } from "../api/Photos";
 import { useNavigate } from "react-router-dom";
+import "./PhotosFormComponent.css";
 
 export function PhotosFormComponent() {
   const location = useLocation();
@@ -114,6 +115,8 @@ export function PhotosFormComponent() {
 
   return (
     <form onSubmit={handleSubmit} className="photo-form">
+      <h2 className="form-title">Formulario de Foto</h2>
+
       <input
         name="name"
         value={formData.name}
@@ -132,23 +135,23 @@ export function PhotosFormComponent() {
         onChange={handleChange}
         placeholder="Subido por"
       />
-      <label>
-        ¿Favorita?
+      <label className="checkbox">
         <input
           type="checkbox"
           name="isFavorite"
           checked={formData.isFavorite}
           onChange={handleChange}
         />
+        ¿Favorita?
       </label>
-      <label>
-        ¿Privada?
+      <label className="checkbox">
         <input
           type="checkbox"
           name="isPrivate"
           checked={formData.isPrivate}
           onChange={handleChange}
         />
+        ¿Privada?
       </label>
       <input
         name="orientation"
@@ -175,7 +178,8 @@ export function PhotosFormComponent() {
         placeholder="Álbumes (separados por coma)"
       />
 
-      <h4>Metadatos</h4>
+      <h4 className="form-subtitle">Metadatos</h4>
+
       <input
         name="location"
         value={formData.metadata.location}
@@ -213,7 +217,9 @@ export function PhotosFormComponent() {
         placeholder="Personas (separadas por coma)"
       />
 
-      <button type="submit">Guardar</button>
+      <button type="submit" className="submit-btn">
+        Guardar
+      </button>
     </form>
   );
 }

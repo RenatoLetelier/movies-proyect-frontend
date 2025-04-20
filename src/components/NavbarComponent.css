@@ -1,96 +1,73 @@
-/* Estilos generales del Navbar */
 .navbar {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
     background-color: #1a1a2e;
     padding: 15px 30px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-/* Estilo para el enlace Home */
-.navbar-home {
+  }
+  
+  /* IZQUIERDA: ancho del logo */
+  .navbar-left {
+    flex: 0 0 auto;
+  }
+  
+  /* CENTRO: se expande y alinea a la izquierda internamente */
+  .navbar-center {
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+    gap: 30px;
+    padding: 0 20px;
+  }
+  
+  /* DERECHA: perfil fijo */
+  .navbar-right {
+    flex: 0 0 auto;
+  }
+  
+  /* Enlaces */
+  .navbar-home,
+  .navbar-link,
+  .profile-link {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 500;
+    transition: color 0.3s ease-in-out;
+  }
+  
+  .navbar-home {
     font-size: 1.8rem;
     font-weight: bold;
-    color: #ffffff;
-    text-decoration: none;
-}
-
-/* Contenedor de perfil */
-.navbar-profile {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    cursor: pointer;
-    text-decoration: none;
-    color: #ffffff;
-    font-size: 1.2rem;
-    transition: color 0.3s ease-in-out;
-}
-
-.navbar-profile:hover {
+  }
+  
+  .navbar-link:hover,
+  .profile-link:hover,
+  .navbar-home:hover {
     color: #e94560;
-}
-
-/* Enlace de perfil */
-.profile-link {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    text-decoration: none;
-    color: #ffffff;
-    font-size: 1.2rem;
-    font-weight: bold;
-    transition: color 0.3s ease-in-out;
-}
-
-.profile-link:hover {
-    color: #e94560;
-}
-
-/* Imagen de perfil */
-.profile-img {
+  }
+  
+  /* Imagen de perfil */
+  .profile-img {
     width: 40px;
     height: 40px;
     border-radius: 50%;
     object-fit: cover;
     display: block;
-}
-
-/* Ocultar imagen si no hay usuario */
-.no-user .profile-img {
-    display: none;
-}
-
-/* Menú responsive */
-.navbar-toggle {
-    display: none;
-    font-size: 1.8rem;
-    color: #ffffff;
+  }
+  
+  /* Log out */
+  .logout-btn {
+    margin-left: 12px;
+    font-size: 0.95rem;
+    font-weight: 500;
     cursor: pointer;
-}
-
-@media (max-width: 768px) {
-    .navbar {
-        flex-direction: row;
-    }
-
-    .navbar-menu {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        position: absolute;
-        top: 60px;
-        left: 0;
-        background-color: #16213e;
-        padding: 10px 0;
-    }
-
-    .navbar-menu.active {
-        display: flex;
-    }
-
-    .navbar-toggle {
-        display: block;
-    }
-}
+    color: #ffffff;
+    transition: color 0.3s ease;
+  }
+  
+  .logout-btn:hover {
+    color: #e94560;
+  }
+  
