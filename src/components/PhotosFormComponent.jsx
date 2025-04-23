@@ -3,8 +3,10 @@ import { useLocation } from "react-router-dom";
 import { apiGetPhotoById, apiCreatePhoto, apiUpdatePhoto } from "../api/Photos";
 import { useNavigate } from "react-router-dom";
 import "./PhotosFormComponent.css";
+import { useMovies } from "../context/MoviesContext";
 
 export function PhotosFormComponent() {
+  const { getMovies } = useMovies();
   const location = useLocation();
   const navigate = useNavigate();
   const queryParams = new URLSearchParams(location.search);
@@ -107,6 +109,7 @@ export function PhotosFormComponent() {
       } else {
         await apiUpdatePhoto(photoId, formData);
       }
+      getMovies();
       navigate(-1);
     } catch (err) {
       console.error("Error al guardar la foto: ", err);

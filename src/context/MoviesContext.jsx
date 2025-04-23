@@ -1,12 +1,5 @@
 import { createContext, useState, useContext } from "react";
-import {
-  apiGetMovies,
-  apiWatchMovie,
-  apiGetMovieById,
-  apiCreateMovie,
-  apiUpdateMovie,
-  apiDeleteMovie,
-} from "../api/Movies";
+import { apiGetMovies } from "../api/Movies";
 
 export const MoviesContext = createContext();
 
@@ -19,37 +12,26 @@ export const useMovies = () => {
 };
 
 export const MoviesProvider = ({ children }) => {
-  const [movie, setMovie] = useState(null);
+  const [movies, setMovies] = useState([]);
 
+  // Fetch movies from the API when the component mounts
   const getMovies = async () => {
     try {
       const res = await apiGetMovies();
-      setMovie(res.data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  const signin = async (user) => {
-    try {
-      const res = await loginRequest(user);
-      setUser(res.data);
-      setIsAuthenticated(true);
+      setMovies(res.data);
     } catch (error) {
       console.error(error);
     }
   };
 
   return (
-    <AuthContext.Provider
+    <MoviesContext.Provider
       value={{
-        signup,
-        signin,
-        user,
-        isAuthenticated,
+        getMovies,
+        movies,
       }}
     >
       {children}
-    </AuthContext.Provider>
+    </MoviesContext.Provider>
   );
 };

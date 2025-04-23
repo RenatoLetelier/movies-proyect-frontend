@@ -1,34 +1,77 @@
-.movies-container {
-    max-width: 600px;
-    margin: 20px auto;
-    padding: 20px;
-    border-radius: 10px;
-    background: #f8f8f8;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
+.movies-page {
+  padding: 0 2rem;
+  color: white;
+  min-height: 100vh;
+}
+
+.movies-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.movies-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.movies-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.movie-card {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  background-color: #222;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.2s;
+}
+
+.movie-card:hover {
+  transform: scale(1.05);
+}
+
+.movie-banner-wrapper {
+  width: 100%;
+  height: 160px;
+  position: relative;
+  background-color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.movie-banner {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.movie-banner-skeleton {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, #333 25%, #444 50%, #333 75%);
+  background-size: 400% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -400px 0;
   }
-  
-  h1 {
-    color: #333;
+  100% {
+    background-position: 400px 0;
   }
-  
-  ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  li {
-    margin: 10px 0;
-  }
-  
-  a {
-    text-decoration: none;
-    font-size: 18px;
-    color: #007bff;
-    transition: color 0.3s;
-  }
-  
-  a:hover {
-    color: #0056b3;
-  }
-  
+}
+
+.movie-title {
+  padding: 0.8rem;
+  font-size: 1rem;
+  color: white;
+  text-align: center;
+}

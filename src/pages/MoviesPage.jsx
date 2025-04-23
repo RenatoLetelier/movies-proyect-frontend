@@ -1,52 +1,58 @@
-import { useState, useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom";
-import { apiGetMovies } from "../api/Movies";
+import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import { RedirectButton } from "../components/RedirectButtonComponent";
+import { useMovies } from "../context/MoviesContext";
+import "./MoviesPage.css";
 
 export function MoviesPage() {
-  const [movies, setMovies] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const navigate = useNavigate();
+  const { getMovies, movies } = useMovies();
 
   useEffect(() => {
-    const fetchMovies = async () => {
-      try {
-        const res = await apiGetMovies();
-        setMovies(Array.isArray(res.data) ? res.data : []);
-      } catch (err) {
-        setError("No se pudo cargar la lista de películas.");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchMovies();
+    getMovies();
   }, []);
 
-  if (loading) return <p>Cargando películas...</p>;
-
-  if (error) return navigate("/error/");
-
   return (
-    <div className="movies-container">
-      <div>
+    <div className="movies-page">
+      <div className="movies-header">
         <h1>Lista de Películas</h1>
-        <RedirectButton buttonText={"Add new movie"} route={"/movies-form"} />
-        <RedirectButton buttonText={"Back"} route={"../"} />
+        <div className="movies-buttons">
+          <RedirectButton buttonText="Add new movie" route="/movies-form" />
+          <RedirectButton buttonText="Back" route="../" />
+        </div>
       </div>
+
       {movies.length === 0 ? (
         <p>No hay películas disponibles.</p>
       ) : (
-        <ul>
+        <div className="movies-grid">
           {movies.map((movie) => (
-            <li key={movie.id}>
-              <Link to={`/movies/watch/${encodeURIComponent(movie.id)}`}>
+            <Link
+              key={movie.id}
+              to={`/movies/watch/${encodeURIComponent(movie.id)}`}
+              className="movie-card"
+            >
+              <div className="movie-banner-wrapper">
+                {movie.imgBanner ? (
+                  <img
+                    src={movie.imgBanner}
+                    alt={movie.title}
+                    className="movie-banner"
+                    onError={(e) => {
+                      e.target.onerror = null;
+                      e.target.style.display = "none";
+                    }}
+                  />
+                ) : (
+                  <div className="movie-banner-skeleton" />
+                )}
+              </div>
+              <div className="movie-title">
                 {movie.title}
-              </Link>
-            </li>
+                {movie.subtitle ? ` - ${movie.subtitle}` : ""}
+              </div>
+            </Link>
           ))}
-        </ul>
+        </div>
       )}
     </div>
   );

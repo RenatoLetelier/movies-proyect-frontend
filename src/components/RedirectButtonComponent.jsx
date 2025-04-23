@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import "./RedirectButtonComponent.css";
 
 export function RedirectButton({ buttonText, route }) {
   const navigate = useNavigate();
