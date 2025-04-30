@@ -1,5 +1,6 @@
 import { createContext, useState, useContext } from "react";
 import { apiGetMovies } from "../api/Movies";
+import { apiGetSubtitles } from "../api/Subtitles";
 
 export const MoviesContext = createContext();
 
@@ -13,6 +14,7 @@ export const useMovies = () => {
 
 export const MoviesProvider = ({ children }) => {
   const [movies, setMovies] = useState([]);
+  const [subtitles, setSubtitles] = useState([]);
 
   // Fetch movies from the API when the component mounts
   const getMovies = async () => {
@@ -24,11 +26,23 @@ export const MoviesProvider = ({ children }) => {
     }
   };
 
+  // Fetch subtitles from the API when the component mounts
+  const getSubtitles = async () => {
+    try {
+      const res = await apiGetSubtitles();
+      setSubtitles(res.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <MoviesContext.Provider
       value={{
         getMovies,
         movies,
+        getSubtitles,
+        subtitles,
       }}
     >
       {children}

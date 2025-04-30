@@ -2,12 +2,14 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { RedirectButton } from "./RedirectButtonComponent";
 import { apiGetMovieById, apiWatchMovie } from "../api/Movies";
+import { apiSeeSubtitle } from "../api/Subtitles";
 
 const URL = import.meta.env.VITE_API_URL;
 
 export function MoviePlayer() {
   const { id } = useParams();
   const streamUrl = `${URL}/movies/watch/${decodeURIComponent(id)}`;
+  const streamSubtitle = `/api/subtitles/stream/${decodeURIComponent(id)}`;
   const [movie, setMovie] = useState(null);
 
   useEffect(() => {
@@ -49,15 +51,16 @@ export function MoviePlayer() {
                 const audio = document.getElementById("external-audio");
                 audio.currentTime = e.target.currentTime;
               }}
-            />
-            {/* <audio
-                id="external-audio"
-                src="/The Weeknd - A Lonely Night (Audio).mp3"
-                preload="auto"
+            >
+              <track
+                label="Español"
+                kind="subtitles"
+                srcLang="es"
+                src={streamSubtitle}
+                default
+                crossOrigin="anonymous"
               />
-              <video controls style={{ width: "100%", maxWidth: "100%" }}>
-                <source src={`http://192.168.1.92:8000/api/movies/muxed/`} type="video/mp4" />
-              </video> */}
+            </video>
           </div>
 
           <h2>{`description: ${movie.description}`}</h2>
