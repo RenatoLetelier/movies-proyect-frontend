@@ -1,15 +1,17 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { RedirectButton } from "./RedirectButtonComponent";
-import { apiGetMovieById, apiWatchMovie } from "../api/Movies";
-import { apiSeeSubtitle } from "../api/Subtitles";
+import { apiGetMovieById } from "../api/Movies";
+import { useMovies } from "../context/MoviesContext";
 
 const URL = import.meta.env.VITE_API_URL;
 
 export function MoviePlayer() {
+  const { subtitles } = useMovies();
   const { id } = useParams();
-  const streamUrl = `${URL}/movies/watch/${decodeURIComponent(id)}`;
-  const streamSubtitle = `/api/subtitles/stream/${decodeURIComponent(id)}`;
+  const videoUrl = `${URL}/movies/watch/${decodeURIComponent(id)}`;
+  // const subtitleUrl = `${URL}/api/subtitles/stream/${decodeURIComponent(id)}`;
+  const audioUrl = `${URL}/audio/stream/${decodeURIComponent(id)}`;
   const [movie, setMovie] = useState(null);
 
   useEffect(() => {
@@ -42,25 +44,26 @@ export function MoviePlayer() {
 
           <div style={{ position: "relative" }}>
             <video
-              src={streamUrl}
+              src={videoUrl}
               controls
               style={{ width: "100%", maxWidth: "100%" }}
-              onPlay={() => document.getElementById("external-audio").play()}
-              onPause={() => document.getElementById("external-audio").pause()}
+              onPlay={() => {
+                const audio = document.getElementById("external-audio");
+                if (audio) audio.play();
+              }}
+              onPause={() => {
+                const audio = document.getElementById("external-audio");
+                if (audio) audio.pause();
+              }}
               onSeeked={(e) => {
                 const audio = document.getElementById("external-audio");
-                audio.currentTime = e.target.currentTime;
+                if (audio) audio.currentTime = e.target.currentTime;
               }}
             >
-              <track
-                label="Español"
-                kind="subtitles"
-                srcLang="es"
-                src={streamSubtitle}
-                default
-                crossOrigin="anonymous"
-              />
+              <track src={subtitles} kind="subtitles" />
             </video>
+
+            <audio id="external-audio" src={audioUrl} preload="auto" />
           </div>
 
           <h2>{`description: ${movie.description}`}</h2>

@@ -37,9 +37,6 @@ function App() {
               }
             />
 
-            {/* <Route path="/movies" element={<MoviesPage />} />
-            <Route path="/movies-form" element={<MoviesFormPage />} />
-            <Route path="/movies/watch/:id" element={<MoviePlayer />} /> */}
             <Route path="/series" element={<SeriesPage />} />
             <Route path="/series-form" element={<SeriesFormPage />} />
             <Route path="/series/watch/:name" element={<SeriePlayer />} />

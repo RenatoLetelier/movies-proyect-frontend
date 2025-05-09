@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const URL = import.meta.env.VITE_API_URL;
-const SUBURL = "/movies";
+const SUBURL = "/api/movies";
 
 export const apiGetMovies = () => axios.get(`${URL}${SUBURL}`);
 export const apiWatchMovie = (id) => axios.get(`${URL}${SUBURL}/watch/${id}`);

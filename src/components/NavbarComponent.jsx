@@ -1,5 +1,5 @@
 import "./NavbarComponent.css";
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useAuth } from "../context/AuthContext";
 
 export function Navbar() {
@@ -11,43 +11,31 @@ export function Navbar() {
   };
 
   return (
-    <nav className="navbar">
-      <div className="navbar-left">
-        <a href="/" className="navbar-home">
-          Home
-        </a>
-      </div>
-
-      <div className="navbar-center">
-        <a href="/movies" className="navbar-link">
-          Películas
-        </a>
-        <a href="/series" className="navbar-link">
-          Series
-        </a>
-        <a href="/photos" className="navbar-link">
-          Fotos
-        </a>
-      </div>
-
-      <div className="navbar-right">
-        <a href={user ? "#" : "/login"} className="profile-link">
-          {user ? (
-            <>
-              <img
-                src="https://randomuser.me/api/portraits/men/46.jpg"
-                alt="Profile"
-                className="profile-img"
-              />
-              <span>{user.username}</span>
-              <span onClick={handleClick} className="logout-btn">
-                Log out
-              </span>
-            </>
-          ) : (
-            <span>Log in</span>
-          )}
-        </a>
+    <nav className="navbar-container">
+      <div className="navbar-wrapper">
+        <div className="navbar-left">
+          <a href="/">Temporal Name</a>
+          <a href="/home">Home</a>
+          <a href="/movies">Movies</a>
+          <a href="/series">Series</a>
+          <a href="/photos">Photos</a>
+        </div>
+        <div className="navbar-right">
+          <a href={user ? "#" : "/login"} className="profile-link">
+            {user ? (
+              <>
+                <span onClick={handleClick}>Log out |</span>
+                <span>{user.username}</span>
+                <img
+                  src="https://randomuser.me/api/portraits/men/75.jpg"
+                  alt="User"
+                />
+              </>
+            ) : (
+              <span>Log in |</span>
+            )}
+          </a>
+        </div>
       </div>
     </nav>
   );
