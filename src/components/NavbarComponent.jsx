@@ -23,7 +23,7 @@ export function Navbar() {
           </div>
         </div>
         <div className="navbar-right">
-          <a href={user ? "#" : "/login"} className="profile-link">
+          <div className="profile-link">
             {user ? (
               <>
                 <span onClick={handleClick}>Log out</span>
@@ -35,9 +35,13 @@ export function Navbar() {
                 />
               </>
             ) : (
-              <span>Log in |</span>
+              <>
+                <a href="/login">Log in</a>
+                <span>|</span>
+                <a href="/register">Sign up</a>
+              </>
             )}
-          </a>
+          </div>
         </div>
       </div>
     </nav>

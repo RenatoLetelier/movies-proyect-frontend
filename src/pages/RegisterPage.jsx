@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { useAuth } from "../context/AuthContext";
 
 export function RegisterPage() {
-  const [error, setError] = useState(null); // Estado de error
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
   const { signup, isAuthenticated } = useAuth();
@@ -34,6 +34,10 @@ export function RegisterPage() {
         <label>
           Usuario:
           <input type="text" {...register("username", { required: true })} />
+        </label>
+        <label>
+          Email:
+          <input type="text" {...register("email", { required: false })} />
         </label>
         <label>
           Contraseña:
