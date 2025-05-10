@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const URL = import.meta.env.VITE_API_URL;
-const SUBURL = "/api/subtitles";
+const SUBURL = "/subtitles";
 
 export const apiGetSubtitles = () => axios.get(`${URL}${SUBURL}`);
 export const apiSeeSubtitle = (id) => axios.get(`${URL}${SUBURL}/stream/${id}`);

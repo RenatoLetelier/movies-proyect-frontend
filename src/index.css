@@ -5,12 +5,20 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #141414;
-
+  
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  
+  background-color: #141414;
+  --background-color: #141414;
+  --primary-black-color: #0c0c0c;
+  --secondary-black-color: #222;
+  --terciary-black-color: #333;
+  --text-primary: #fff;
+  --bold-black-border: 2px solid black;
+  --bold-white-border: 2px solid white;
 }
 
 body {
@@ -18,17 +26,4 @@ body {
   display: flex;
   place-items: center;
   min-width: 320px;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
 }

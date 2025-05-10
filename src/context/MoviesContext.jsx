@@ -16,7 +16,6 @@ export const MoviesProvider = ({ children }) => {
   const [movies, setMovies] = useState([]);
   const [subtitles, setSubtitles] = useState([]);
 
-  // Fetch movies from the API when the component mounts
   const getMovies = async () => {
     try {
       const res = await apiGetMovies();
@@ -26,7 +25,6 @@ export const MoviesProvider = ({ children }) => {
     }
   };
 
-  // Fetch subtitles from the API when the component mounts
   const getSubtitles = async () => {
     try {
       const res = await apiSeeSubtitle();

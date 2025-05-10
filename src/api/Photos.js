@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const URL = import.meta.env.VITE_API_URL;
-const SUBURL = "/api/photos";
+const SUBURL = "/photos";
 
 export const apiGetPhotos = () => axios.get(`${URL}${SUBURL}`);
 export const apiSeePhoto = (name) => axios.get(`${URL}${SUBURL}/see/${name}`);

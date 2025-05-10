@@ -1,12 +1,41 @@
 .movies-page {
-  padding: 0 2rem;
-  color: white;
+  color: var(--text-primary);
 }
 
 .movies-header {
   display: flex;
+  margin: 1rem 0;
   justify-content: space-between;
   align-items: center;
+}
+
+.input-container {
+  display: flex;
+  align-items: center;
+  width: 400px;
+  height: 30px;
+  padding: 0 10px;
+  border-radius: 20px;
+  border: var(--bold-white-border);
+  background-color: var(--black-color);
+  color: var(--text-primary);
+}
+
+.input-container .search-icon {
+  margin-right: 10px;
+  color: var(--text-primary);
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.input-container input {
+  flex: 1;
+  height: 100%;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: var(--text-primary);
+  font-size: 16px;
 }
 
 .movies-buttons {
@@ -25,7 +54,7 @@
   display: flex;
   flex-direction: column;
   text-decoration: none;
-  background-color: #222;
+  background-color: var(--secondary-black-color);
   border-radius: 8px;
   overflow: hidden;
   transition: transform 0.2s;
@@ -39,7 +68,7 @@
   width: 100%;
   height: 160px;
   position: relative;
-  background-color: #333;
+  background-color: var(--terciary-black-color);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -71,6 +100,6 @@
 .movie-title {
   padding: 0.8rem;
   font-size: 1rem;
-  color: white;
+  color: var(--text-primary);
   text-align: center;
 }

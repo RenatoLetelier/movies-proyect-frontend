@@ -14,11 +14,11 @@ export function MoviesPage() {
   return (
     <div className="movies-page">
       <div className="movies-header">
-        <h1>Lista de Películas</h1>
-        <div className="movies-buttons">
-          <RedirectButton buttonText="Add new movie" route="/movies-form" />
-          <RedirectButton buttonText="Back" route="../" />
+        <div className="input-container">
+          <span className="search-icon">🔍</span>
+          <input type="text" placeholder="Title, people, genre..." />
         </div>
+        <RedirectButton buttonText="Add new movie" route="/movies-form" />
       </div>
 
       {movies.length === 0 ? (
