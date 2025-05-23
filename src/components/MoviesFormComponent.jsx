@@ -1,15 +1,17 @@
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
-import { apiGetMovieById } from "../api/Movies";
-import { useNavigate } from "react-router-dom";
-import { apiCreateMovie, apiUpdateMovie } from "../api/Movies";
+import { useLocation, useNavigate } from "react-router-dom";
+import {
+  apiGetMovieByTitle,
+  apiCreateMovie,
+  apiUpdateMovie,
+} from "../api/Movies";
 import "./MoviesFormComponent.css";
 
 export function MoviesFormComponent() {
   const location = useLocation();
   const navigate = useNavigate();
   const queryParams = new URLSearchParams(location.search);
-  const movieId = queryParams.get("id");
+  let movieTitle = queryParams.get("title");
 
   const [formData, setFormData] = useState({
     title: "",
@@ -28,11 +30,11 @@ export function MoviesFormComponent() {
   });
 
   useEffect(() => {
-    if (!movieId) return;
+    if (!movieTitle) return;
 
     const fetchMovie = async () => {
       try {
-        const res = await apiGetMovieById(movieId);
+        const res = await apiGetMovieByTitle(movieTitle);
         const data = res.data;
 
         setFormData({
@@ -46,7 +48,7 @@ export function MoviesFormComponent() {
     };
 
     fetchMovie();
-  }, [movieId]);
+  }, [movieTitle]);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -66,10 +68,12 @@ export function MoviesFormComponent() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!movieId) {
+    console.log("formData", formData.title);
+    console.log(movieTitle);
+    if (!movieTitle) {
       apiCreateMovie(formData);
     } else {
-      apiUpdateMovie(movieId, formData);
+      apiUpdateMovie(movieTitle, formData);
     }
     navigate(-1);
   };

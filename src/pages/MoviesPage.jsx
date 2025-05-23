@@ -8,6 +8,7 @@ export function MoviesPage() {
   const { getMovies, movies } = useMovies();
   const [search, setSearch] = useState("");
   const [staticMovies, setStaticMovies] = useState(null);
+  const URL = `${import.meta.env.VITE_STATIC_URL}/static/peliculas/`;
 
   useEffect(() => {
     getMovies();
@@ -47,19 +48,22 @@ export function MoviesPage() {
           {movies.map((movie) => (
             <Link
               key={movie.id}
-              to={`/movies/watch/${encodeURIComponent(movie.id)}`}
+              to={`/movies/watch/${encodeURIComponent(movie.title)}`}
               className="movie-card"
             >
+              {!movie.id ? (
+                <div className="favorite-icon">
+                  <span>⭐</span>
+                </div>
+              ) : (
+                ""
+              )}
               <div className="movie-banner-wrapper">
-                {movie.imgBanner ? (
+                {movie.title ? (
                   <img
-                    src={movie.imgBanner}
+                    src={`${URL}${encodeURIComponent(movie.title)}/banner.jpg`}
                     alt={movie.title}
                     className="movie-banner"
-                    onError={(e) => {
-                      e.target.onerror = null;
-                      e.target.style.display = "none";
-                    }}
                   />
                 ) : (
                   <div className="movie-banner-skeleton" />

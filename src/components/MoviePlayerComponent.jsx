@@ -1,25 +1,24 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { RedirectButton } from "./RedirectButtonComponent";
-import { apiGetMovieById } from "../api/Movies";
+import { apiGetMovieByTitle } from "../api/Movies";
 import { useMovies } from "../context/MoviesContext";
 
 const URL = import.meta.env.VITE_API_URL;
 
 export function MoviePlayer() {
   const { subtitles } = useMovies();
-  const { id } = useParams();
-  const videoUrl = `${URL}/movies/watch/${decodeURIComponent(id)}`;
-  // const subtitleUrl = `${URL}/api/subtitles/stream/${decodeURIComponent(id)}`;
-  const audioUrl = `${URL}/audio/stream/${decodeURIComponent(id)}`;
+  const { title } = useParams();
+  const videoUrl = `${URL}/movies/watch/${decodeURIComponent(title)}`;
+  const audioUrl = `${URL}/audio/stream/${decodeURIComponent(title)}`;
   const [movie, setMovie] = useState(null);
 
   useEffect(() => {
-    if (!id) return;
+    if (!title) return;
 
     const fetchMovie = async () => {
       try {
-        const res = await apiGetMovieById(`${decodeURIComponent(id)}`);
+        const res = await apiGetMovieByTitle(`${decodeURIComponent(title)}`);
         const data = res.data;
         setMovie(data);
       } catch (err) {
@@ -37,10 +36,11 @@ export function MoviePlayer() {
           <RedirectButton buttonText={"Back"} route={-1} />
           <RedirectButton
             buttonText={"Edit movie"}
-            route={`/movies-form?id=${id}`}
+            route={`/movies-form?title=${movie?.id ? title : ""}`}
           />
 
-          <h2>{`${movie.title} - ${movie.subtitle}`}</h2>
+          <h2>{`${movie.title}`}</h2>
+          {movie.subtitle ? <h2>{`${movie.subtitle}`}</h2> : ""}
 
           <div style={{ position: "relative" }}>
             <video
@@ -48,8 +48,7 @@ export function MoviePlayer() {
               controls
               style={{ width: "100%", maxWidth: "100%" }}
               onPlay={() => {
-                const audio = document.getElementById("external-audio");
-                if (audio) audio.play();
+                document.getElementById("external-audio");
               }}
               onPause={() => {
                 const audio = document.getElementById("external-audio");

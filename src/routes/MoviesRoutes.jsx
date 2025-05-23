@@ -8,7 +8,7 @@ export default function MoviesRoutes() {
     <Routes>
       <Route path="/movies" element={<MoviesPage />} />
       <Route path="/movies-form" element={<MoviesFormPage />} />
-      <Route path="/movies/watch/:id" element={<MoviePlayer />} />
+      <Route path="/movies/watch/:title" element={<MoviePlayer />} />
     </Routes>
   );
 }

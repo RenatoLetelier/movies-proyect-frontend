@@ -58,6 +58,7 @@
 }
 
 .profile-link span {
+  cursor: pointer;
   color: var(--text-primary);
 }
 

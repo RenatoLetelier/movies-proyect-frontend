@@ -1,12 +1,15 @@
 import axios from "axios";
 
-const URL = import.meta.env.VITE_API_URL;
+const URL = `${import.meta.env.VITE_API_URL}`;
 const SUBURL = "/movies";
 
 export const apiGetMovies = () => axios.get(`${URL}${SUBURL}`);
-export const apiWatchMovie = (id) => axios.get(`${URL}${SUBURL}/watch/${id}`);
-export const apiGetMovieById = (id) => axios.get(`${URL}${SUBURL}/${id}`);
+export const apiWatchMovie = (title) =>
+  axios.get(`${URL}${SUBURL}/watch/${title}`);
+export const apiGetMovieByTitle = (title) =>
+  axios.get(`${URL}${SUBURL}/${title}`);
 export const apiCreateMovie = (movie) => axios.post(`${URL}${SUBURL}/`, movie);
-export const apiUpdateMovie = (id, movie) =>
-  axios.put(`${URL}${SUBURL}/${id}`, movie);
-export const apiDeleteMovie = (id) => axios.delete(`${URL}${SUBURL}/${id}`);
+export const apiUpdateMovie = (title, movie) =>
+  axios.put(`${URL}${SUBURL}/${title}`, movie);
+export const apiDeleteMovie = (title) =>
+  axios.delete(`${URL}${SUBURL}/${title}`);
