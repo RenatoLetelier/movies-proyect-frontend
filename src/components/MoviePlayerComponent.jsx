@@ -4,13 +4,11 @@ import { RedirectButton } from "./RedirectButtonComponent";
 import { apiGetMovieByTitle } from "../api/Movies";
 import { useMovies } from "../context/MoviesContext";
 
-const URL = import.meta.env.VITE_API_URL;
-
 export function MoviePlayer() {
   const { subtitles } = useMovies();
   const { title } = useParams();
-  const videoUrl = `${URL}/movies/watch/${decodeURIComponent(title)}`;
-  const audioUrl = `${URL}/audio/stream/${decodeURIComponent(title)}`;
+  const videoUrl = `/api/movies/watch/${decodeURIComponent(title)}`;
+  const audioUrl = `/api/audio/stream/${decodeURIComponent(title)}`;
   const [movie, setMovie] = useState(null);
 
   useEffect(() => {

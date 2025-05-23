@@ -8,7 +8,7 @@ export function MoviesPage() {
   const { getMovies, movies } = useMovies();
   const [search, setSearch] = useState("");
   const [staticMovies, setStaticMovies] = useState(null);
-  const URL = `${import.meta.env.VITE_STATIC_URL}/static/peliculas/`;
+  const URL = `/api/static/peliculas/`;
 
   useEffect(() => {
     getMovies();
@@ -19,7 +19,6 @@ export function MoviesPage() {
     if (search.length === 0) {
       return;
     }
-    console.log("staticMovies", staticMovies);
   }, [search]);
 
   const handleOnChange = (e) => {
